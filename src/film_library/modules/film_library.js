@@ -1,5 +1,10 @@
 'use strict';
 
+import dayjs from 'dayjs';
+import isSameOrAfter from 'dayjs/plugin/isSameOrAfter.js';
+dayjs.extend(isSameOrAfter);
+
+
 
 export function FilmLibrary() {
     
@@ -10,19 +15,41 @@ export function FilmLibrary() {
     }
 
     this.sortByDate = () => {
-        let sorted = this.filmArray.sort((a,b) => a.date - b.date);
-        sorted.forEach((item) => console.log(item.date['$D']));
+
+        const sorter = (a,b) => {
+            const aDateExist = typeof a.date !== 'undefined';
+            const bDateExist = typeof b.date !== 'undefined';
+            return (bDateExist - aDateExist) || (a.date - b.date);
+        }
+
+        const sorted = [...this.filmArray].sort(sorter);
+        return sorted;
     }
 
-
-
-
-
+    this.deleteFilm = (id) => {
+        this.filmArray.forEach((item, index) => {
+            item.id === id ? this.filmArray.splice(index,1) : 0
+        })
+    }
 
     this.showLibrary = (film) => {
         this.filmArray.forEach(film => {
             console.log(film.title);
         });
+    }
+
+    this.resetWatchedFilms = () => {
+        this.filmArray.forEach((item) => {
+            typeof item.date !== 'undefined' ? item.date = undefined : 0 
+        })
+    }
+
+    this.getRated = () => {
+        console.log("***** Films filtered, only the rated ones *****\n");
+        this.filmArray
+                .filter(item => item.rating > 0 && item.rating !== 'undefined')
+                    .sort((a,b) => a.rating-b.rating)
+                        .forEach((item) => console.log(`Id: ${item.id}, Title: ${item.title}, Favorite: ${item.favorites}, Watch date: ${item.date}, Score: ${item.rating}\n`));
     }
 
 };

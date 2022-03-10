@@ -12,6 +12,4 @@ const film5 = new Film(5, "Shrek", false, "March 21, 2022", 3 );
 
 fl.addNewFilm(film1, film2, film3, film4, film5);
 
-fl.showLibrary();
 
-fl.sortByDate();
