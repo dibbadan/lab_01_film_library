@@ -1,11 +1,5 @@
 'use strict';
 
-import dayjs from 'dayjs';
-import isSameOrAfter from 'dayjs/plugin/isSameOrAfter.js';
-dayjs.extend(isSameOrAfter);
-
-
-
 export function FilmLibrary() {
     
     this.filmArray = [];
