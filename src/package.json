@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "emoji-slice": "^2.1.0",
+    "grapheme-splitter": "^1.0.4"
+  },
+  "type": "module"
+}
