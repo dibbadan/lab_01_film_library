@@ -1,6 +1,6 @@
 'use strict';
 
-import emojiSlice from "emoji-slice";
+
 import GraphemeSplitter from "grapheme-splitter";
 
 const splitter = new GraphemeSplitter();
